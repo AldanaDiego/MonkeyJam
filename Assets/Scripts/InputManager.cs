@@ -23,5 +23,10 @@ public class InputManager : Singleton<InputManager>
     {
         return _playerInput.Player.Move.ReadValue<Vector2>();
     }
+
+    public bool IsShootTriggered()
+    {
+        return _playerInput.Player.Shoot.IsPressed();
+    }
     
 }

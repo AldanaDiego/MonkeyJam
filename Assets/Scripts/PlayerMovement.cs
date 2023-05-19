@@ -78,4 +78,14 @@ public class PlayerMovement : MonoBehaviour
         _propulsors.Rotate(0.0f, 0.0f, rotation);
     }
 
+    public Vector3 GetRotation()
+    {
+        return _propulsors.transform.eulerAngles;
+    }
+
+    public Vector3 GetUpDirection()
+    {
+        return _propulsors.transform.up;
+    }
+
 }

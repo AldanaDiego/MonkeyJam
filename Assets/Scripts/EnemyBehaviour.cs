@@ -47,6 +47,14 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+        }    
+    }
+
     private Vector3 GenerateTargetPosition(Vector3 currentPos)
     {
         Vector3 target = new Vector3(
