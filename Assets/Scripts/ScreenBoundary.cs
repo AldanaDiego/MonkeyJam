@@ -10,10 +10,6 @@ public class ScreenBoundary : Singleton<ScreenBoundary>
     protected override void Awake()
     {
         base.Awake();
-    }
-
-    private void Start()
-    {
         _screenBounds = new Vector2(
             _mainCamera.orthographicSize * Screen.width / Screen.height,
             _mainCamera.orthographicSize

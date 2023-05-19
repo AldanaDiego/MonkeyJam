@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
         _transform = transform;
         _inputManager = InputManager.GetInstance();
         _screenBounds = ScreenBoundary.GetInstance().GetScreenBounds();
-        Debug.Log(_screenBounds);
         _rigidBody = GetComponent<Rigidbody>();
     }
 
