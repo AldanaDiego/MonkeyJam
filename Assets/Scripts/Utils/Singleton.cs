@@ -11,7 +11,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         if (Instance != null && Instance != this)
         {
             Debug.Log($"Repeated instance of {typeof(T)}");
-            Destroy(this);
+            Destroy(gameObject);
             return;
         }
         Instance = GetComponent<T>();

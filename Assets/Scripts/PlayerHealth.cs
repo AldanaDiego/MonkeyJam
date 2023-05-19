@@ -2,15 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
     private int _maxHealth = 5;
-    private int _currentHealth = 5;
+    private int _currentHealth = 2;
     private float _invincibleTime = 1.0f;
     private float _invincibleCooldown = 0.0f;
 
     public static EventHandler OnHealthChanged;
+    public static EventHandler OnPlayerDeath;
 
     private void Update()
     {
@@ -29,9 +31,18 @@ public class PlayerHealth : MonoBehaviour
             OnHealthChanged?.Invoke(this, EventArgs.Empty);
             if (_currentHealth == 0)
             {
-                Destroy(gameObject);
+                OnPlayerDeath?.Invoke(this, EventArgs.Empty);
+                //TODO death animation AND deactivate movement, collisions, enemy spawn....
+                StartCoroutine("TriggerGameOver");
             }
         }    
+    }
+
+    private IEnumerator TriggerGameOver()
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
+        SceneManager.LoadScene("GameOverScene");
     }
 
     public int GetCurrentHealth()
