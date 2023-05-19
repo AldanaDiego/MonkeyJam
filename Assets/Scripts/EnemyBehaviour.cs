@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class EnemyBehaviour : MonoBehaviour
     private Transform _transform;
     private Vector2 _screenBounds;
     private Vector3 _targetPosition;
+
+    public static EventHandler OnEnemyDeathByPlayer;
 
     private void Awake()
     {
@@ -55,6 +58,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else if (other.gameObject.tag == "Bullet")
         {
+            OnEnemyDeathByPlayer?.Invoke(this, EventArgs.Empty);
             Destroy(gameObject);
         }
     }
@@ -63,11 +67,11 @@ public class EnemyBehaviour : MonoBehaviour
     {
         Vector3 target = new Vector3(
             0.0f,
-            ((currentPos.y > 0.0f) ? Random.Range(-1f, -_screenBounds.y) : Random.Range(1f, _screenBounds.y)),
-            ((currentPos.z > 0.0f) ? Random.Range(-1f, -_screenBounds.x) : Random.Range(1f, _screenBounds.x))
+            ((currentPos.y > 0.0f) ? UnityEngine.Random.Range(-1f, -_screenBounds.y) : UnityEngine.Random.Range(1f, _screenBounds.y)),
+            ((currentPos.z > 0.0f) ? UnityEngine.Random.Range(-1f, -_screenBounds.x) : UnityEngine.Random.Range(1f, _screenBounds.x))
         );
 
-        if (Random.value < 0.5f)
+        if (UnityEngine.Random.value < 0.5f)
         {
             target.y = (target.y > 0.0f) ? _screenBounds.y + 1.5f : -_screenBounds.y - 1.5f;
         }
