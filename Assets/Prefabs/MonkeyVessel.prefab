@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 8722512881571846482}
   - component: {fileID: -7287906157683355534}
   - component: {fileID: 7924581232314679605}
+  - component: {fileID: 6321617363219948074}
   - component: {fileID: 2979569721430778011}
   m_Layer: 0
   m_Name: MonkeyVessel
@@ -207,6 +208,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 8138457849996893331, guid: b46e70fc246fed7479bd96855d485f6a, type: 3}
   _shootCooldown: 1
+--- !u!114 &6321617363219948074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3057599450929302762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df77d0e71fa5114781b1eec3675b17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &2979569721430778011
 Rigidbody:
   m_ObjectHideFlags: 0

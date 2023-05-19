@@ -11,7 +11,7 @@ public class PlayerShoot : MonoBehaviour
     private InputManager _inputManager;
     private float _cooldownTimer = 0.0f;
 
-    private List<Vector3> _shootPoints = new List<Vector3> { new Vector3(0, 0.55f, 1.3f), new Vector3(0, 0.55f, -1.3f) };
+    private List<Vector3> _shootPoints = new List<Vector3> { new Vector3(0, 0.6f, 1.3f), new Vector3(0, 0.6f, -1.3f) };
 
     private void Start()
     {

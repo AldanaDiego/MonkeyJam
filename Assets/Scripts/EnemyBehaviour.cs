@@ -52,7 +52,11 @@ public class EnemyBehaviour : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-        }    
+        }
+        else if (other.gameObject.tag == "Bullet")
+        {
+            Destroy(gameObject);
+        }
     }
 
     private Vector3 GenerateTargetPosition(Vector3 currentPos)

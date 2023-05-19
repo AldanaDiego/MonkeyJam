@@ -38,6 +38,14 @@ public class BulletBehaviour : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }    
+    }
+
     public void Setup(Vector3 shootDirection)
     {
         _shootDirection = shootDirection;
