@@ -12,7 +12,7 @@ public class SoundEffectManager : Singleton<SoundEffectManager>
     [SerializeField] AudioClip _playerDeathAudio;
 
     private AudioSource _audioSource;
-    private float _volume = 1f;
+    private float _volume = 0.75f;
 
     protected override void Awake()
     {
@@ -26,12 +26,12 @@ public class SoundEffectManager : Singleton<SoundEffectManager>
 
     public void PlayBulletShotAudio()
     {
-        _audioSource.PlayOneShot(_bulletShotAudio, _volume);
+        _audioSource.PlayOneShot(_bulletShotAudio, 1f);
     }
 
     public void PlayItemPickAudio()
     {
-        _audioSource.PlayOneShot(_itemPickAudio, 0.75f);
+        _audioSource.PlayOneShot(_itemPickAudio, 0.55f);
     }
 
     public void PlayDamageAudio()
@@ -47,6 +47,6 @@ public class SoundEffectManager : Singleton<SoundEffectManager>
 
     public void PlayPlayerDeathAudio()
     {
-        _audioSource.PlayOneShot(_playerDeathAudio, 0.75f);
+        _audioSource.PlayOneShot(_playerDeathAudio, _volume);
     }
 }

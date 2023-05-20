@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private InputManager _inputManager;
     private Rigidbody _rigidBody;
     private Vector2 _screenBounds;
+    private bool _active;
 
     private void Start()
     {
@@ -22,15 +24,20 @@ public class PlayerMovement : MonoBehaviour
         _inputManager = InputManager.GetInstance();
         _screenBounds = ScreenBoundary.GetInstance().GetScreenBounds();
         _rigidBody = GetComponent<Rigidbody>();
+        _active = true;
+        PlayerHealth.OnPlayerDeath += OnPlayerDeath;
     }
 
     private void Update()
     {
-        Vector2 movInput = _inputManager.GetMovementInput();
-        if (movInput != Vector2.zero)
+        if (_active)
         {
-            HandleAcceleration(movInput.y);
-            HandleRotation(movInput.x);
+            Vector2 movInput = _inputManager.GetMovementInput();
+            if (movInput != Vector2.zero)
+            {
+                HandleAcceleration(movInput.y);
+                HandleRotation(movInput.x);
+            }
         }
     }
 
@@ -76,6 +83,16 @@ public class PlayerMovement : MonoBehaviour
 
         float rotation = _rotationSpeed * Time.deltaTime * (value > 0.0f ? 1.0f : -1.0f);
         _propulsors.Rotate(0.0f, 0.0f, rotation);
+    }
+
+    private void OnPlayerDeath(object sender, EventArgs empty)
+    {
+        _active = false;
+    }
+
+    private void OnDisable()
+    {
+        PlayerHealth.OnPlayerDeath -= OnPlayerDeath;
     }
 
     public Vector3 GetRotation()

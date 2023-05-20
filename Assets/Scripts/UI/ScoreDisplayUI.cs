@@ -30,7 +30,7 @@ public class ScoreDisplayUI : MonoBehaviour
 
     private void OnDisable()
     {
-        EnemyBehaviour.OnEnemyDeathByPlayer += OnEnemyDeath;
-        ItemDrop.OnItemHeal += OnItemHeal;    
+        EnemyBehaviour.OnEnemyDeathByPlayer -= OnEnemyDeath;
+        ItemDrop.OnItemHeal -= OnItemHeal;    
     }
 }
