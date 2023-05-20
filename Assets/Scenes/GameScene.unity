@@ -370,6 +370,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletShotAudio: {fileID: 8300000, guid: cabfae866cab347928b74b7d0ca6bfa9, type: 3}
+  _damageAudio1: {fileID: 8300000, guid: d8d04c6f80a1140db85ede568dab1f51, type: 3}
+  _damageAudio2: {fileID: 8300000, guid: e886b502824097d438107b45e0e6682b, type: 3}
+  _itemPickAudio: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
+  _enemyDeathAudio: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
+  _playerDeathAudio: {fileID: 8300000, guid: 958408b32ccf3714ea02821877b0870c, type: 3}
 --- !u!4 &302249983
 Transform:
   m_ObjectHideFlags: 0

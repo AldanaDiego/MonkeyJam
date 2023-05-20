@@ -7,6 +7,8 @@ public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed = 5f;
     [SerializeField] private float _stopDistance = 0.1f;
+
+    private SoundEffectManager _soundEffectManager;
     private Transform _transform;
     private Vector2 _screenBounds;
     private Vector3 _targetPosition;
@@ -29,6 +31,7 @@ public class EnemyBehaviour : MonoBehaviour
         _targetPosition = GenerateTargetPosition(pos);
         Vector3 targetDirection = (_targetPosition - pos).normalized;
         _transform.forward = targetDirection;
+        _soundEffectManager = SoundEffectManager.GetInstance();
     }
 
     private void Update() 
@@ -58,6 +61,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else if (other.gameObject.tag == "Bullet")
         {
+            _soundEffectManager.PlayEnemyDeathAudio();
             OnEnemyDeathByPlayer?.Invoke(this, EventArgs.Empty);
             Destroy(gameObject);
         }

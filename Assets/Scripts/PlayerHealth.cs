@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
+    private SoundEffectManager _soundEffectManager;
     private int _maxHealth = 5;
     private int _currentHealth = 5;
     private float _invincibleTime = 1.0f;
@@ -17,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         ItemDrop.OnItemHeal += OnItemHeal;
+        _soundEffectManager = SoundEffectManager.GetInstance();
     }
 
     private void Update()
@@ -34,11 +36,17 @@ public class PlayerHealth : MonoBehaviour
             _invincibleCooldown = _invincibleTime;
             _currentHealth--;
             OnHealthChanged?.Invoke(this, _currentHealth + 1);
+            
             if (_currentHealth == 0)
             {
+                _soundEffectManager.PlayPlayerDeathAudio();
                 OnPlayerDeath?.Invoke(this, EventArgs.Empty);
                 //TODO death animation AND deactivate movement, collisions, enemy spawn....
                 StartCoroutine("TriggerGameOver");
+            }
+            else
+            {
+                _soundEffectManager.PlayDamageAudio();
             }
         }    
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ItemDrop : MonoBehaviour
 {
+    private SoundEffectManager _soundEffectManager;
     private Transform _transform;
     private Vector2 _screenBounds;
     private float _rotationSpeed = 15f;
@@ -15,6 +16,7 @@ public class ItemDrop : MonoBehaviour
     {
         _transform = transform;
         _screenBounds = ScreenBoundary.GetInstance().GetScreenBounds();
+        _soundEffectManager = SoundEffectManager.GetInstance();
     }
 
     private void Update()
@@ -31,6 +33,7 @@ public class ItemDrop : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             OnItemHeal?.Invoke(this, 1);
+            _soundEffectManager.PlayItemPickAudio();
             Destroy(gameObject);
         }    
     }

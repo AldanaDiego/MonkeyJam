@@ -5,6 +5,12 @@ using UnityEngine;
 public class SoundEffectManager : Singleton<SoundEffectManager>
 {
     [SerializeField] AudioClip _bulletShotAudio;
+    [SerializeField] AudioClip _damageAudio1;
+    [SerializeField] AudioClip _damageAudio2;
+    [SerializeField] AudioClip _itemPickAudio;
+    [SerializeField] AudioClip _enemyDeathAudio;
+    [SerializeField] AudioClip _playerDeathAudio;
+
     private AudioSource _audioSource;
     private float _volume = 1f;
 
@@ -20,7 +26,27 @@ public class SoundEffectManager : Singleton<SoundEffectManager>
 
     public void PlayBulletShotAudio()
     {
-        Debug.Log($"Play sound!");
         _audioSource.PlayOneShot(_bulletShotAudio, _volume);
+    }
+
+    public void PlayItemPickAudio()
+    {
+        _audioSource.PlayOneShot(_itemPickAudio, 0.75f);
+    }
+
+    public void PlayDamageAudio()
+    {
+        _audioSource.PlayOneShot(_damageAudio1, _volume);
+        _audioSource.PlayOneShot(_damageAudio2, _volume);
+    }
+
+    public void PlayEnemyDeathAudio()
+    {
+        _audioSource.PlayOneShot(_enemyDeathAudio, _volume);
+    }
+
+    public void PlayPlayerDeathAudio()
+    {
+        _audioSource.PlayOneShot(_playerDeathAudio, 0.75f);
     }
 }
