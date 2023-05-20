@@ -198,6 +198,51 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 963194227}
+--- !u!1 &299545135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 299545137}
+  - component: {fileID: 299545136}
+  m_Layer: 0
+  m_Name: ItemDropManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &299545136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299545135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3c9f9e97b4d2046915575d28d06423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _watermelonPrefab: {fileID: 2507629730841578245, guid: f7f3d35724f7624469b43fe6ddb15a19, type: 3}
+--- !u!4 &299545137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299545135}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 260, y: 565, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &467745230
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,6 +962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207ba7bbeb447d841b41666d1582c450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fullHeartTexture: {fileID: 2800000, guid: e201da33da3760644b0c36f2113f8a29, type: 3}
   _emptyHeartTexture: {fileID: 2800000, guid: 7cf9c2830ba36734eb35e8057f815f9a, type: 3}
   _hearts:
   - {fileID: 820759383}

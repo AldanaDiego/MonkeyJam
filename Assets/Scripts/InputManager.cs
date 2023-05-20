@@ -7,7 +7,6 @@ public class InputManager : Singleton<InputManager>
 {
     private PlayerInputActions _playerInput;
 
-
     protected override void Awake()
     {
         base.Awake();

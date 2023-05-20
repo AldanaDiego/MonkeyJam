@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private BulletBehaviour _bulletPrefab;
-    [SerializeField] private float _shootCooldown;
+    [SerializeField] private float _shootCooldown = 1f;
     private Transform _transform;
     private PlayerMovement _playerMovement;
     private InputManager _inputManager;

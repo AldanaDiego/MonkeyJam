@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] private float _movementSpeed;
-    [SerializeField] private float _stopDistance;
+    [SerializeField] private float _movementSpeed = 5f;
+    [SerializeField] private float _stopDistance = 0.1f;
     private Transform _transform;
     private Vector2 _screenBounds;
     private Vector3 _targetPosition;

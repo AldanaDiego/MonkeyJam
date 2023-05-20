@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Transform _propulsors;
-    [SerializeField] private float _movementSpeed;
-    [SerializeField] private float _rotationSpeed;
-    [SerializeField] private float _brakeSpeed;
-    [SerializeField] private float _maxSpeed;
-    [SerializeField] private float _boundsOffset;
+    [SerializeField] private float _movementSpeed = 100f;
+    [SerializeField] private float _rotationSpeed = 75f;
+    [SerializeField] private float _brakeSpeed = 0.05f;
+    [SerializeField] private float _maxSpeed = 30f;
+    [SerializeField] private float _boundsOffset = 1f;
 
     private Transform _transform;
     private InputManager _inputManager;

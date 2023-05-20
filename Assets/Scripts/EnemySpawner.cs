@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Transform _enemyPrefab;
-    [SerializeField] private float _spawnCooldown;
+    [SerializeField] private float _spawnCooldown = 2.5f;
     private Vector2 _screenBounds;
     private float _timer = 0.0f;
 

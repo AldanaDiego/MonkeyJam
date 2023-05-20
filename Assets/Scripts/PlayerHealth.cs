@@ -11,8 +11,13 @@ public class PlayerHealth : MonoBehaviour
     private float _invincibleTime = 1.0f;
     private float _invincibleCooldown = 0.0f;
 
-    public static EventHandler OnHealthChanged;
+    public static EventHandler<int> OnHealthChanged;
     public static EventHandler OnPlayerDeath;
+
+    private void Start()
+    {
+        ItemDrop.OnItemHeal += OnItemHeal;
+    }
 
     private void Update()
     {
@@ -28,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
         {
             _invincibleCooldown = _invincibleTime;
             _currentHealth--;
-            OnHealthChanged?.Invoke(this, EventArgs.Empty);
+            OnHealthChanged?.Invoke(this, _currentHealth + 1);
             if (_currentHealth == 0)
             {
                 OnPlayerDeath?.Invoke(this, EventArgs.Empty);
@@ -43,6 +48,13 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(3f);
         Destroy(gameObject);
         SceneManager.LoadScene("GameOverScene");
+    }
+
+    private void OnItemHeal(object sender, int amount)
+    {
+        int previousHealth = _currentHealth;
+        _currentHealth = Mathf.Min(_currentHealth + amount, _maxHealth);
+        OnHealthChanged?.Invoke(this, previousHealth);
     }
 
     public int GetCurrentHealth()
