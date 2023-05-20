@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     private int _maxHealth = 5;
-    private int _currentHealth = 2;
+    private int _currentHealth = 5;
     private float _invincibleTime = 1.0f;
     private float _invincibleCooldown = 0.0f;
 
