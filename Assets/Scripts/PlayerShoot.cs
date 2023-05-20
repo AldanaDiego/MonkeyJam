@@ -8,6 +8,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float _shootCooldown = 1f;
     private Transform _transform;
     private PlayerMovement _playerMovement;
+    private SoundEffectManager _soundEffectManager;
     private InputManager _inputManager;
     private float _cooldownTimer = 0.0f;
 
@@ -17,6 +18,7 @@ public class PlayerShoot : MonoBehaviour
     {
         _transform = transform;
         _inputManager = InputManager.GetInstance();
+        _soundEffectManager = SoundEffectManager.GetInstance();
         _playerMovement = GetComponent<PlayerMovement>();
     }
 
@@ -30,13 +32,19 @@ public class PlayerShoot : MonoBehaviour
         if (_cooldownTimer <= 0.0f && _inputManager.IsShootTriggered())
         {
             _cooldownTimer = _shootCooldown;
-            Vector3 shootDirection = _playerMovement.GetUpDirection();
-            foreach (var shootPoint in GetShootingPoints())
-            {
-                BulletBehaviour bullet = Instantiate(_bulletPrefab, shootPoint, Quaternion.identity);
-                bullet.Setup(shootDirection);
-            }
+            StartShootAction();
         }
+    }
+
+    private void StartShootAction()
+    {
+        Vector3 shootDirection = _playerMovement.GetUpDirection();
+        foreach (var shootPoint in GetShootingPoints())
+        {
+            BulletBehaviour bullet = Instantiate(_bulletPrefab, shootPoint, Quaternion.identity);
+            bullet.Setup(shootDirection);
+        }
+        _soundEffectManager.PlayBulletShotAudio();
     }
 
     private List<Vector3> GetShootingPoints()
