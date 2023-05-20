@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletBehaviour : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed = 10f;
+    [SerializeField] private ParticleSystem _smokeTrail;
     private Vector2 _screenBounds;
     private Vector3 _shootDirection;
     private Transform _transform;
@@ -49,6 +50,7 @@ public class BulletBehaviour : MonoBehaviour
     public void Setup(Vector3 shootDirection)
     {
         _shootDirection = shootDirection;
+        _smokeTrail.transform.forward = shootDirection * -1f;
         _active = true;
     }
 }
