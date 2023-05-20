@@ -57,6 +57,11 @@ public class PlayerHealth : MonoBehaviour
         OnHealthChanged?.Invoke(this, previousHealth);
     }
 
+    private void OnDisable()
+    {
+        ItemDrop.OnItemHeal -= OnItemHeal;    
+    }
+
     public int GetCurrentHealth()
     {
         return _currentHealth;

@@ -12,12 +12,25 @@ public class ScoreDisplayUI : MonoBehaviour
     private void Start()
     {
         EnemyBehaviour.OnEnemyDeathByPlayer += OnEnemyDeath;
-        _scoreText.text = "Fish x 0";
+        ItemDrop.OnItemHeal += OnItemHeal;
+        _scoreText.text = "Score: 0";
     }
 
     private void OnEnemyDeath(object sender, EventArgs empty)
     {
         _score++;
-        _scoreText.text = "Fish x " + _score;
+        _scoreText.text = "Score: " + _score;
+    }
+
+    private void OnItemHeal(object sender, int amount)
+    {
+        _score += (amount == 1) ? 2 : 5;
+        _scoreText.text = "Score: " + _score;
+    }
+
+    private void OnDisable()
+    {
+        EnemyBehaviour.OnEnemyDeathByPlayer += OnEnemyDeath;
+        ItemDrop.OnItemHeal += OnItemHeal;    
     }
 }

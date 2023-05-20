@@ -7,11 +7,20 @@ public class HealthDisplayUI : MonoBehaviour
 {
     [SerializeField] private Texture _fullHeartTexture;
     [SerializeField] private Texture _emptyHeartTexture;
-    [SerializeField] private RawImage[] _hearts;
+    [SerializeField] private RawImage _heartPrefab;
+    private List<RawImage> _hearts;
+    private Transform _transform;
 
     private void Start()
     {
+        _transform = transform;
+        _hearts = new List<RawImage>();
         PlayerHealth.OnHealthChanged += OnPlayerHealthChanged;
+        for (int i = 0; i < 5; i++)
+        {
+            _hearts.Add(Instantiate(_heartPrefab));
+            _hearts[i].transform.SetParent(_transform);
+        }
     }
 
     private void OnPlayerHealthChanged(object sender, int previousHealth)
@@ -32,5 +41,10 @@ public class HealthDisplayUI : MonoBehaviour
                 _hearts[i].texture = _emptyHeartTexture;
             }
         }
+    }
+
+    private void OnDisable()
+    {
+        PlayerHealth.OnHealthChanged -= OnPlayerHealthChanged;
     }
 }
