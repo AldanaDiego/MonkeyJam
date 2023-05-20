@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TitleViewManager : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup _titleView;
-    [SerializeField] private CanvasGroup _creditsView;
+    [SerializeField] private GameObject _titleView;
+    [SerializeField] private GameObject _creditsView;
 
     public void ShowCreditsView()
     {
@@ -19,15 +19,13 @@ public class TitleViewManager : MonoBehaviour
         ShowView(_titleView);
     }
 
-    private void HideView(CanvasGroup canvas)
+    private void HideView(GameObject canvas)
     {
-        canvas.alpha = 0f;
-        canvas.interactable = false;
+        canvas.SetActive(false);
     }
 
-    private void ShowView(CanvasGroup canvas)
+    private void ShowView(GameObject canvas)
     {
-        canvas.alpha = 1f;
-        canvas.interactable = true;
+        canvas.SetActive(true);
     }
 }
