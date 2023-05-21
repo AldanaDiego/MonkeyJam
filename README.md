@@ -8,6 +8,7 @@ A shoot' em up style game set in the bottom of the sea.
 - Avoid and shoot the fish attacking you
 - Collect fruits to recover health
 - Difficulty slightly increases over time
+- Aim to get a high score!
 
 ## Credits
 
