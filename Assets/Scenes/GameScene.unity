@@ -289,6 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _watermelonPrefab: {fileID: 2507629730841578245, guid: f7f3d35724f7624469b43fe6ddb15a19, type: 3}
+  _bananaPrefab: {fileID: 4000011676345262, guid: 2f123ba0da79f7048a83d3f251443b81, type: 3}
 --- !u!4 &299545137
 Transform:
   m_ObjectHideFlags: 0

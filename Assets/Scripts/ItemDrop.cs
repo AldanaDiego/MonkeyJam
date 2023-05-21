@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ItemDrop : MonoBehaviour
 {
+    [SerializeField] private int _amountToHeal;
     private SoundEffectManager _soundEffectManager;
     private Transform _transform;
     private Vector2 _screenBounds;
@@ -32,7 +33,7 @@ public class ItemDrop : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            OnItemHeal?.Invoke(this, 1);
+            OnItemHeal?.Invoke(this, _amountToHeal);
             _soundEffectManager.PlayItemPickAudio();
             Destroy(gameObject);
         }    

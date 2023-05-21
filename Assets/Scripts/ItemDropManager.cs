@@ -6,12 +6,14 @@ using UnityEngine;
 public class ItemDropManager : MonoBehaviour
 {
     [SerializeField] private Transform _watermelonPrefab;
+    [SerializeField] private Transform _bananaPrefab;
 
     private int deathCount = 0;
 
     private void Start()
     {
         EnemyBehaviour.OnEnemyDeathByPlayer += OnEnemyDeath;
+        BossBehaviour.OnBossDeath += OnBossDeath;
     }
 
     private void OnEnemyDeath(object sender, EventArgs empty)
@@ -25,8 +27,15 @@ public class ItemDropManager : MonoBehaviour
         }
     }
 
+    private void OnBossDeath(object sender, EventArgs empty)
+    {
+        BossBehaviour boss = (BossBehaviour) sender;
+        Instantiate(_bananaPrefab, boss.transform.position, _bananaPrefab.rotation);
+    }
+
     private void OnDisable()
     {
         EnemyBehaviour.OnEnemyDeathByPlayer -= OnEnemyDeath;
+        BossBehaviour.OnBossDeath -= OnBossDeath;
     }
 }
