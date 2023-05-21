@@ -90,6 +90,16 @@ public class PlayerMovement : MonoBehaviour
         _active = false;
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Boss")
+        {
+            Debug.Log($"PUSH");
+            Vector3 direction = (-_transform.position).normalized;
+            _rigidBody.AddForce(direction * 50f, ForceMode.Force);
+        }
+    }
+
     private void OnDisable()
     {
         PlayerHealth.OnPlayerDeath -= OnPlayerDeath;

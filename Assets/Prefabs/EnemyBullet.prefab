@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &42259880816404819
+--- !u!1 &3254407793034058967
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 156854196895522843}
-  - component: {fileID: 3333235384694371846}
-  - component: {fileID: 8767790615865550922}
+  - component: {fileID: 8918665437945066006}
+  - component: {fileID: 1250542786100219025}
+  - component: {fileID: 2111309836943389921}
   m_Layer: 6
   m_Name: Smoke
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &156854196895522843
+--- !u!4 &8918665437945066006
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 42259880816404819}
+  m_GameObject: {fileID: 3254407793034058967}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
@@ -33,13 +33,13 @@ Transform:
   m_Father: {fileID: 8386465000578723138}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!198 &3333235384694371846
+--- !u!198 &1250542786100219025
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 42259880816404819}
+  m_GameObject: {fileID: 3254407793034058967}
   serializedVersion: 8
   lengthInSec: 0.25
   simulationSpeed: 1
@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.8867924, g: 0.8826094, b: 0.8826094, a: 1}
+      maxColor: {r: 0.0754717, g: 0.0751157, b: 0.0751157, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4756,14 +4756,14 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &8767790615865550922
+--- !u!199 &2111309836943389921
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 42259880816404819}
+  m_GameObject: {fileID: 3254407793034058967}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -4842,8 +4842,8 @@ GameObject:
   - component: {fileID: 1321574296395457363}
   - component: {fileID: 8138457849996893331}
   - component: {fileID: 6336616865258142904}
-  m_Layer: 7
-  m_Name: Bullet
+  m_Layer: 9
+  m_Name: EnemyBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4858,11 +4858,11 @@ Transform:
   m_GameObject: {fileID: 6966885392899460494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6580210316772785093}
-  - {fileID: 156854196895522843}
+  - {fileID: 8918665437945066006}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4949,9 +4949,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b676d10ef8bd3b47be22b149dc6b5bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 10
+  _movementSpeed: 1
   _smokeTrail: {fileID: 6369063992085292319}
-  _smoke: {fileID: 3333235384694371846}
+  _smoke: {fileID: 1250542786100219025}
 --- !u!54 &6336616865258142904
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4990,7 +4990,7 @@ GameObject:
   - component: {fileID: 6580210316772785093}
   - component: {fileID: 6369063992085292319}
   - component: {fileID: 7542669874898118794}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: SmokeTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5095,7 +5095,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5202,7 +5202,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
+      maxColor: {r: 0, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5266,7 +5266,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5644,7 +5644,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 5
+    angle: 10
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1

@@ -6,6 +6,7 @@ public class BulletBehaviour : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed = 10f;
     [SerializeField] private ParticleSystem _smokeTrail;
+    [SerializeField] private ParticleSystem _smoke;
     private Vector2 _screenBounds;
     private Vector3 _shootDirection;
     private Transform _transform;
@@ -41,10 +42,18 @@ public class BulletBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (gameObject.tag == "Bullet" && (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss"))
         {
+            _smoke.transform.parent = null;
+            _smoke.Play(false);
             Destroy(gameObject);
-        }    
+        }
+        else if (gameObject.layer == LayerMask.NameToLayer("EnemyBullet") && other.gameObject.tag == "Player")
+        {
+            _smoke.transform.parent = null;
+            _smoke.Play(false);
+            Destroy(gameObject);
+        }
     }
 
     public void Setup(Vector3 shootDirection)

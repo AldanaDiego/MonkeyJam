@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem _smoke;
     [SerializeField] private float _movementSpeed = 5f;
     [SerializeField] private float _stopDistance = 0.1f;
 
@@ -57,15 +56,11 @@ public class EnemyBehaviour : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Player")
-        {
-            _smoke.transform.parent = null;
-            _smoke.Play(false);
+        {   
             Destroy(gameObject);
         }
         else if (other.gameObject.tag == "Bullet")
         {
-            _smoke.transform.parent = null;
-            _smoke.Play(false);
             _soundEffectManager.PlayEnemyDeathAudio();
             OnEnemyDeathByPlayer?.Invoke(this, EventArgs.Empty);
             Destroy(gameObject);

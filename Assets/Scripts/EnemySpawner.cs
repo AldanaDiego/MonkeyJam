@@ -6,16 +6,25 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Transform _enemyPrefab;
+    [SerializeField] private Transform _bossPrefab;
     [SerializeField] private float _spawnCooldown = 2.5f;
     private Vector2 _screenBounds;
-    private float _timer = 0.0f;
+    private float _timer;
     private bool _active;
+
+    private float _bossSpawnTime = 15f;
+    private float _bossTimer;
+    private bool _bossSpawned;
 
     private void Start()
     {
         _screenBounds = ScreenBoundary.GetInstance().GetScreenBounds();
         PlayerHealth.OnPlayerDeath += OnPlayerDeath;
+        BossBehaviour.OnBossDeath += OnBossDeath;
+        _timer = 0f;
+        _bossTimer = 0f;
         _active = true;
+        _bossSpawned = false;
     }
 
     private void Update()
@@ -23,10 +32,21 @@ public class EnemySpawner : MonoBehaviour
         if (_active)
         {
             _timer += Time.deltaTime;
+            
             if (_timer > _spawnCooldown)
             {
                 _timer = 0.0f;
                 Instantiate(_enemyPrefab, GenerateSpawnPosition(), _enemyPrefab.rotation);
+            }
+            if (!_bossSpawned)
+            {
+                _bossTimer += Time.deltaTime;
+                if (_bossTimer > _bossSpawnTime)
+                {
+                    _active = false;
+                    _bossSpawned = true;
+                    Instantiate(_bossPrefab, new Vector3(0, -_screenBounds.y - 2f, 0), _bossPrefab.rotation);
+                }
             }
         }
     }
@@ -57,8 +77,19 @@ public class EnemySpawner : MonoBehaviour
         _active = false;
     }
 
+    private void OnBossDeath(object sender, EventArgs empty)
+    {
+        _timer = 0f;
+        _bossTimer = 0f;
+        _bossSpawnTime += 15f;
+        _bossSpawned = false;
+        _spawnCooldown = Mathf.Max(_spawnCooldown - 0.5f, 1.5f);
+        _active = true;
+    }
+
     private void OnDisable()
     {
         PlayerHealth.OnPlayerDeath -= OnPlayerDeath;
+        BossBehaviour.OnBossDeath -= OnBossDeath;
     }
 }

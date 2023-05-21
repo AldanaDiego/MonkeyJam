@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (_invincibleCooldown <= 0.0f && other.gameObject.tag == "Enemy")
+        if (_invincibleCooldown <= 0.0f && (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss" || other.gameObject.tag == "Bullet"))
         {
             _invincibleCooldown = _invincibleTime;
             _currentHealth--;
