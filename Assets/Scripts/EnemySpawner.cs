@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Transform _enemyPrefab;
     [SerializeField] private Transform _strongEnemyPrefab;
+    [SerializeField] private Transform _shooterEnemyPrefab;
     [SerializeField] private BossBehaviour _bossPrefab;
     [SerializeField] private float _spawnCooldown = 2.5f;
     private Vector2 _screenBounds;
@@ -14,6 +15,7 @@ public class EnemySpawner : MonoBehaviour
     private bool _active;
 
     private float _strongEnemyChance = 0f;
+    private float _shooterEnemyChance = -0.25f;
     private float _bossSpawnTime = 20f;
     private float _bossTimer;
     private bool _bossSpawned;
@@ -43,6 +45,10 @@ public class EnemySpawner : MonoBehaviour
                 if (UnityEngine.Random.value < _strongEnemyChance)
                 {
                     Instantiate(_strongEnemyPrefab, GenerateSpawnPosition(), _strongEnemyPrefab.rotation);
+                }
+                else if (UnityEngine.Random.value < _shooterEnemyChance)
+                {
+                    Instantiate(_shooterEnemyPrefab, GenerateSpawnPosition(), _shooterEnemyPrefab.rotation);
                 }
                 else
                 {
@@ -96,7 +102,8 @@ public class EnemySpawner : MonoBehaviour
         _bossTimer = 0f;
         _bossSpawnTime += 10f;
         _bossSpawned = false;
-        _strongEnemyChance = Mathf.Min(_strongEnemyChance + 0.25f, 0.75f);
+        _strongEnemyChance = Mathf.Min(_strongEnemyChance + 0.25f, 0.5f);
+        _shooterEnemyChance = Mathf.Min(_shooterEnemyChance + 0.25f, 0.25f);
         _spawnCooldown = Mathf.Max(_spawnCooldown - 0.5f, 1f);
         _active = true;
     }
