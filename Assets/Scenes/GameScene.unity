@@ -873,6 +873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 1290067972644904598, guid: 5378f1a104e0e6647b12a557d212877a, type: 3}
+  _strongEnemyPrefab: {fileID: 8999338503545881367, guid: b5e28f6e21cc468448cc9fd88bdac629, type: 3}
   _bossPrefab: {fileID: 3966559439922566201, guid: f4021c7950c6b1c4eab7d682f8f60d70, type: 3}
   _spawnCooldown: 2.5
 --- !u!4 &881970016
