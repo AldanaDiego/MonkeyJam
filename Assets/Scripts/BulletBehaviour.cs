@@ -11,6 +11,7 @@ public class BulletBehaviour : MonoBehaviour
     private Vector3 _shootDirection;
     private Transform _transform;
     private bool _active = false;
+    private float _outOfBoundsOffset = 0.5f;
 
     private void Start()
     {
@@ -30,10 +31,10 @@ public class BulletBehaviour : MonoBehaviour
     private void CheckBounds()
     {
         if (
-            _transform.position.y > _screenBounds.y ||
-            _transform.position.z > _screenBounds.x ||
-            _transform.position.y < -_screenBounds.y ||
-            _transform.position.z < -_screenBounds.x
+            _transform.position.y - _outOfBoundsOffset > _screenBounds.y ||
+            _transform.position.z - _outOfBoundsOffset > _screenBounds.x ||
+            _transform.position.y + _outOfBoundsOffset < -_screenBounds.y ||
+            _transform.position.z + _outOfBoundsOffset < -_screenBounds.x
         )
         {
             Destroy(gameObject);

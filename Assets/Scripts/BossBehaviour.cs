@@ -27,6 +27,7 @@ public class BossBehaviour : MonoBehaviour
 
     private float _shootCooldown = 5.5f;
     private float _shootTimer;
+    private int _bulletAmount = 1;
 
     private void Start()
     {
@@ -83,8 +84,25 @@ public class BossBehaviour : MonoBehaviour
         {
             _shootTimer = 0f;
             Vector3 direction = (new Vector3(0, UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f))) - _transform.position;
-            BulletBehaviour bullet = Instantiate(_bulletPrefab, _transform.position, Quaternion.identity);
-            bullet.Setup(direction);
+            if (_bulletAmount > 1)
+            {
+                Vector3 directionA = Quaternion.AngleAxis((_bulletAmount > 2) ? 40 : 20, Vector3.right) * direction;
+                Vector3 directionB = Quaternion.AngleAxis((_bulletAmount > 2) ? -40 : -20, Vector3.right) * direction;
+                BulletBehaviour bulletA = Instantiate(_bulletPrefab, _transform.position, Quaternion.identity);
+                BulletBehaviour bulletB = Instantiate(_bulletPrefab, _transform.position, Quaternion.identity);
+                bulletA.Setup(directionA);
+                bulletB.Setup(directionB);
+                if (_bulletAmount == 3)
+                {
+                    BulletBehaviour bullet = Instantiate(_bulletPrefab, _transform.position, Quaternion.identity);
+                    bullet.Setup(direction);
+                }
+            }
+            else
+            {
+                BulletBehaviour bullet = Instantiate(_bulletPrefab, _transform.position, Quaternion.identity);
+                bullet.Setup(direction);
+            }
         } 
     }
 
@@ -119,5 +137,12 @@ public class BossBehaviour : MonoBehaviour
                 Destroy(gameObject);
             }
         }    
+    }
+
+    public void Setup(int stage)
+    {
+        _shootCooldown = Mathf.Max(6.5f - stage, 3.5f);
+        _movementSpeed = Mathf.Clamp(3f + ((stage - 1) * 0.25f), 3f, 4f);
+        _bulletAmount = Mathf.Min(stage, 3);
     }
 }

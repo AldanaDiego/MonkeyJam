@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Transform _enemyPrefab;
     [SerializeField] private Transform _strongEnemyPrefab;
-    [SerializeField] private Transform _bossPrefab;
+    [SerializeField] private BossBehaviour _bossPrefab;
     [SerializeField] private float _spawnCooldown = 2.5f;
     private Vector2 _screenBounds;
     private float _timer;
@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
     private float _bossSpawnTime = 20f;
     private float _bossTimer;
     private bool _bossSpawned;
+    private int _bossStage;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class EnemySpawner : MonoBehaviour
         BossBehaviour.OnBossDeath += OnBossDeath;
         _timer = 0f;
         _bossTimer = 0f;
+        _bossStage = 1;
         _active = true;
         _bossSpawned = false;
     }
@@ -54,7 +56,8 @@ public class EnemySpawner : MonoBehaviour
                 {
                     _active = false;
                     _bossSpawned = true;
-                    Instantiate(_bossPrefab, new Vector3(0, -_screenBounds.y - 2f, 0), _bossPrefab.rotation);
+                    BossBehaviour boss = Instantiate(_bossPrefab, new Vector3(0, -_screenBounds.y - 2f, 0), _bossPrefab.transform.rotation);
+                    boss.Setup(_bossStage);
                 }
             }
         }
@@ -89,6 +92,7 @@ public class EnemySpawner : MonoBehaviour
     private void OnBossDeath(object sender, EventArgs empty)
     {
         _timer = 0f;
+        _bossStage++;
         _bossTimer = 0f;
         _bossSpawnTime += 10f;
         _bossSpawned = false;

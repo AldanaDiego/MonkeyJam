@@ -12,6 +12,7 @@ public class ScoreDisplayUI : MonoBehaviour
     private void Start()
     {
         EnemyBehaviour.OnEnemyDeathByPlayer += OnEnemyDeath;
+        BossBehaviour.OnBossDeath += OnBossDeath;
         ItemDrop.OnItemHeal += OnItemHeal;
         _score = 0;
         PlayerPrefs.SetInt("Score", _score);
@@ -32,9 +33,17 @@ public class ScoreDisplayUI : MonoBehaviour
         _scoreText.text = "Score: " + _score;
     }
 
+    private void OnBossDeath(object sender, EventArgs empty)
+    {
+        _score += 3;
+        PlayerPrefs.SetInt("Score", _score);
+        _scoreText.text = "Score: " + _score;
+    }
+
     private void OnDisable()
     {
         EnemyBehaviour.OnEnemyDeathByPlayer -= OnEnemyDeath;
         ItemDrop.OnItemHeal -= OnItemHeal;
+        BossBehaviour.OnBossDeath -= OnBossDeath;
     }
 }
