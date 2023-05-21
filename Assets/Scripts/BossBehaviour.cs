@@ -15,6 +15,7 @@ public class BossBehaviour : MonoBehaviour
     private float _invincibleTime = 1.5f;
     private float _invincibleCooldown = 0.0f;
 
+    private SoundEffectManager _soundEffectManager;
     private Transform _transform;
     private List<Vector3> _targetPositions;
     private Vector3 _moveDirection;
@@ -24,7 +25,7 @@ public class BossBehaviour : MonoBehaviour
     private bool _activeMovement;
     private bool _activeShooting;
 
-    private float _shootCooldown = 7f;
+    private float _shootCooldown = 5.5f;
     private float _shootTimer;
 
     private void Start()
@@ -37,6 +38,7 @@ public class BossBehaviour : MonoBehaviour
         _activeShooting = false;
         _bossHealth = 10;
         _shootTimer = 0;
+        _soundEffectManager = SoundEffectManager.GetInstance();
     }
 
     private void Update()
@@ -111,6 +113,8 @@ public class BossBehaviour : MonoBehaviour
             _bossHealth--;
             if (_bossHealth <= 0)
             {
+                _shootCooldown = Mathf.Max(_shootCooldown - 1f, 3.5f);
+                _soundEffectManager.PlayEnemyDeathAudio();
                 OnBossDeath?.Invoke(this, EventArgs.Empty);
                 Destroy(gameObject);
             }

@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     private float _timer;
     private bool _active;
 
-    private float _bossSpawnTime = 15f;
+    private float _bossSpawnTime = 20f;
     private float _bossTimer;
     private bool _bossSpawned;
 
@@ -81,9 +81,9 @@ public class EnemySpawner : MonoBehaviour
     {
         _timer = 0f;
         _bossTimer = 0f;
-        _bossSpawnTime += 15f;
+        _bossSpawnTime += 10f;
         _bossSpawned = false;
-        _spawnCooldown = Mathf.Max(_spawnCooldown - 0.5f, 1.5f);
+        _spawnCooldown = Mathf.Max(_spawnCooldown - 0.5f, 1f);
         _active = true;
     }
 

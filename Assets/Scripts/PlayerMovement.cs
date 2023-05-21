@@ -94,7 +94,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Boss")
         {
-            Debug.Log($"PUSH");
             Vector3 direction = (-_transform.position).normalized;
             _rigidBody.AddForce(direction * 50f, ForceMode.Force);
         }
