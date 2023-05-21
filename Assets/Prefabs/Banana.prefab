@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 905f4ad8004398e46906bf76a522dbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amountToHeal: 2
+  _amountToHeal: 5
 --- !u!64 &-3105967947841363466
 MeshCollider:
   m_ObjectHideFlags: 0

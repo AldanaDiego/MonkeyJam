@@ -11,7 +11,7 @@ public class BulletBehaviour : MonoBehaviour
     private Vector3 _shootDirection;
     private Transform _transform;
     private bool _active = false;
-    private float _outOfBoundsOffset = 0.5f;
+    private float _outOfBoundsOffset = 2f;
 
     private void Start()
     {

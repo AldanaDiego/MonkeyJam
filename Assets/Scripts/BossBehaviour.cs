@@ -82,12 +82,15 @@ public class BossBehaviour : MonoBehaviour
         _shootTimer += Time.deltaTime;
         if (_shootTimer >= _shootCooldown)
         {
+            _transform.position = new Vector3(0f, _transform.position.y, _transform.position.z);
             _shootTimer = 0f;
             Vector3 direction = (new Vector3(0, UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f))) - _transform.position;
             if (_bulletAmount > 1)
             {
                 Vector3 directionA = Quaternion.AngleAxis((_bulletAmount > 2) ? 40 : 20, Vector3.right) * direction;
                 Vector3 directionB = Quaternion.AngleAxis((_bulletAmount > 2) ? -40 : -20, Vector3.right) * direction;
+                directionA.x = 0;
+                directionB.x = 0;
                 BulletBehaviour bulletA = Instantiate(_bulletPrefab, _transform.position, Quaternion.identity);
                 BulletBehaviour bulletB = Instantiate(_bulletPrefab, _transform.position, Quaternion.identity);
                 bulletA.Setup(directionA);
