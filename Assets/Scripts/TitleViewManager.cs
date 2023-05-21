@@ -29,6 +29,15 @@ public class TitleViewManager : MonoBehaviour
         ShowView(_storyView);
     }
 
+    public void QuitGame()
+    {
+        #if UNITY_EDITOR
+         UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+    }
+
     private void HideView(GameObject canvas)
     {
         canvas.SetActive(false);

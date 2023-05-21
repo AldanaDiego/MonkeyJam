@@ -7,6 +7,7 @@ A silly monkey game made in Unity for CDawgVA Monkey Jam 2023
 A shoot' em up style game set in the bottom of the sea.
 - Avoid and shoot the fish attacking you
 - Collect fruits to recover health
+- Difficulty slightly increases over time
 
 ## Credits
 
