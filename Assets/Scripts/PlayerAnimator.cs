@@ -7,6 +7,7 @@ public class PlayerAnimator : MonoBehaviour
 {
     [SerializeField] private GameObject _vessel;
     [SerializeField] private GameObject _propulsors;
+    [SerializeField] private ParticleSystem _smoke;
     [SerializeField] private Animator _monkeyAnimator;
 
     private void Start()
@@ -18,6 +19,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         Destroy(_vessel);
         Destroy(_propulsors);
+        _smoke.Play();
         _monkeyAnimator.SetTrigger("OnDeath");
     }
 

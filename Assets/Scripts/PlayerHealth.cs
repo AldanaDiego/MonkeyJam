@@ -41,7 +41,6 @@ public class PlayerHealth : MonoBehaviour
             {
                 _soundEffectManager.PlayPlayerDeathAudio();
                 OnPlayerDeath?.Invoke(this, EventArgs.Empty);
-                //TODO death animation AND deactivate movement, collisions, enemy spawn....
                 StartCoroutine("TriggerGameOver");
             }
             else
